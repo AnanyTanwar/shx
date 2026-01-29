@@ -1,0 +1,13 @@
+# build artifacts
+build/
+bin/
+
+# editor junk
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# OS junk
+.DS_Store
