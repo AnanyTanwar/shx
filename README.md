@@ -92,8 +92,8 @@ shx/
 │       ├── shell.h     # Main header
 │       └── config.h    # Configuration
 ├── tests/              # Test scripts
-├── Makefile           # Build system
-└── README.md          # This file
+├── Makefile           
+└── README.md          
 ```
 
 ## Technical Details
