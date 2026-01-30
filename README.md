@@ -2,8 +2,10 @@
 
 A lightweight, educational Unix shell written in C that demonstrates fundamental operating system concepts.
 
-![Version](https://img.shields.io/badge/version-0.1.0-blue)
-![License](https://img.shields.io/badge/license-MIT-green)
+<p align="center">
+  <img src="https://img.shields.io/badge/VERSION-0.1.0-blue?style=flat-square" />
+  <img src="https://img.shields.io/badge/LICENSE-MIT-green?style=flat-square" />
+</p>
 
 ## Features
 
