@@ -75,4 +75,8 @@ char *trim_whitespace(char *str);
 char *get_env_var(const char *name);
 int set_env_var(const char *name, const char *value);
 
+// Environment expansion functions
+char *expand_env_vars(const char *str);
+void expand_command_vars(Command *cmd);
+
 #endif // SHELL_H
