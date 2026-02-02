@@ -61,6 +61,14 @@ Pipeline *parse_pipeline(char **tokens, int token_count)
         }
     }
 
+
+    // Expand environment variables in all commands
+    for (int i = 0; i < pl->count; i++) {
+        if (pl->commands[i]) {
+            expand_command_vars(pl->commands[i]);
+        }
+    }
+
     return pl;
 }
 
