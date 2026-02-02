@@ -26,6 +26,12 @@ typedef struct {
     int background;    // Run in background
 } Command;
 
+// Pipeline structure
+typedef struct {
+    Command **commands; // Array of commands
+    int count;          // Number of commands in pipeline
+} Pipeline;
+
 // Global variable for exit control
 extern volatile sig_atomic_t should_exit;
 
@@ -34,10 +40,12 @@ char *read_line(void);
 char **tokenize(char *line, int *token_count);
 Command *parse_command(char **tokens, int token_count);
 void free_command(Command *cmd);
+Pipeline *parse_pipeline(char **tokens, int token_count);
+void free_pipeline(Pipeline *pipe);
 
 // Executor functions
 int execute_command(Command *cmd, char **envp);
-int execute_pipeline(Command **commands, int cmd_count, char **envp);
+int execute_pipeline(Pipeline *pipe, char **envp);
 
 // Builtin functions
 int is_builtin(char *cmd);

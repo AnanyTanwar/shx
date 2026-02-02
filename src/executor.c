@@ -70,15 +70,3 @@ int execute_command(Command *cmd, char **envp)
 
     return 0;
 }
-
-// Execute pipeline of commands (for future pipe support)
-int execute_pipeline(Command **commands, int cmd_count, char **envp)
-{
-    // TODO: Implement pipeline execution with pipes
-    (void)commands;
-    (void)cmd_count;
-    (void)envp;
-
-    fprintf(stderr, "Pipelines not yet implemented\n");
-    return -1;
-}
