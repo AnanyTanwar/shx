@@ -125,15 +125,6 @@ shx/
 
 **Memory Management:** No memory leaks (verified with valgrind)
 
-## Roadmap
-
-- [x] Pipeline support (`|`) ✅ **v0.2.0**
-- [x] Environment variable expansion (`$VAR`) ✅ **v0.2.0**
-- [ ] Command history (up/down arrows)
-- [ ] Tab completion
-- [ ] Job control (`fg`, `bg`, `jobs`)
-- [ ] Wildcard expansion (`*.txt`)
-- [ ] Command substitution (`$(cmd)`)
 
 ## What's New
 
@@ -158,16 +149,6 @@ Contributions welcome! Feel free to:
 ## License
 
 MIT License - see LICENSE file
-
-## Learning Resources
-
-This project is great for learning about:
-- Process management in Unix
-- Inter-process communication (pipes)
-- File descriptors and I/O
-- Signal handling
-- Environment variables
-- System calls (`fork`, `exec`, `wait`, `dup2`, `pipe`)
 
 ## Author
 
