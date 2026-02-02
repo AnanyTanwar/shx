@@ -8,7 +8,6 @@ int main(int argc, char *argv[], char **envp)
 {
     char *line = NULL;
     char **tokens = NULL;
-    Command *cmd = NULL;
     int token_count = 0;
 
     (void)argc;
@@ -52,9 +51,9 @@ int main(int argc, char *argv[], char **envp)
 
         DEBUG_PRINT("Tokenized %d tokens", token_count);
 
-        // Parse command
-        cmd = parse_command(tokens, token_count);
-        if (cmd == NULL) {
+        // Parse pipeline (handles both single commands and pipes)
+        Pipeline *pipeline = parse_pipeline(tokens, token_count);
+        if (pipeline == NULL) {
             // Free tokens
             for (int i = 0; i < token_count; i++) {
                 free(tokens[i]);
@@ -64,16 +63,17 @@ int main(int argc, char *argv[], char **envp)
             continue;
         }
 
-        // Check if builtin
-        if (cmd->argc > 0 && is_builtin(cmd->args[0])) {
-            execute_builtin(cmd);
+        // Execute pipeline
+        if (pipeline->count == 1 && is_builtin(pipeline->commands[0]->args[0])) {
+            // Single builtin command
+            execute_builtin(pipeline->commands[0]);
         } else {
-            // Execute external command
-            execute_command(cmd, envp);
+            // Pipeline or external command
+            execute_pipeline(pipeline, envp);
         }
 
         // Cleanup
-        free_command(cmd);
+        free_pipeline(pipeline);
         for (int i = 0; i < token_count; i++) {
             free(tokens[i]);
         }
