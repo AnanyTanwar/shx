@@ -3,14 +3,17 @@
 A lightweight, educational Unix shell written in C that demonstrates fundamental operating system concepts.
 
 <p align="center">
-  <img src="https://img.shields.io/badge/VERSION-0.1.0-blue?style=flat-square" />
+  <img src="https://img.shields.io/badge/VERSION-0.2.0-blue?style=flat-square" />
   <img src="https://img.shields.io/badge/LICENSE-MIT-green?style=flat-square" />
+  <img src="https://img.shields.io/badge/LOC-~1000-orange?style=flat-square" />
 </p>
 
 ## Features
 
 - ✅ **Command Execution** - Run any external program
 - ✅ **Built-in Commands** - `cd`, `pwd`, `echo`, `exit`, `export`, `env`
+- ✅ **Pipelines** - Connect commands with `|` 🔥 **NEW in v0.2.0**
+- ✅ **Environment Variables** - `$VAR` and `${VAR}` expansion 🔥 **NEW in v0.2.0**
 - ✅ **I/O Redirection** - `>`, `<`, `>>`
 - ✅ **Background Jobs** - Run commands with `&`
 - ✅ **Signal Handling** - Ctrl+C doesn't kill the shell
@@ -19,7 +22,7 @@ A lightweight, educational Unix shell written in C that demonstrates fundamental
 ## Quick Start
 ```bash
 # Clone the repository
-git clone https://github.com/YOUR_USERNAME/shx.git
+git clone https://github.com/AnanyTanwar/shx.git
 cd shx
 
 # Build
@@ -38,24 +41,32 @@ shx $ pwd
 shx $ echo Hello World
 Hello World
 
+# Pipelines (NEW!)
+shx $ ls | grep src
+shx $ cat file.txt | grep error | wc -l
+shx $ echo hello | cat | cat
+
+# Environment variables (NEW!)
+shx $ echo $HOME
+/home/user
+
+shx $ cd $HOME
+shx $ export MY_VAR=test
+shx $ echo $MY_VAR
+test
+
 # I/O Redirection
 shx $ ls > files.txt
 shx $ cat < input.txt
 shx $ echo "log entry" >> log.txt
 
+# Combining features
+shx $ ls $HOME | grep Documents
+shx $ cat $USER.txt > output.txt
+
 # Background processes
 shx $ sleep 10 &
 [1] 12345
-
-# Change directory
-shx $ cd /tmp
-tmp $ pwd
-/tmp
-
-# Environment variables
-shx $ export MY_VAR=hello
-shx $ env | grep MY_VAR
-MY_VAR=hello
 ```
 
 ## Building
@@ -86,6 +97,8 @@ shx/
 │   ├── parser.c        # Command parsing
 │   ├── executor.c      # Process execution
 │   ├── builtins.c      # Built-in commands
+│   ├── pipeline.c      # Pipeline execution (NEW!)
+│   ├── expand.c        # Variable expansion (NEW!)
 │   ├── redirect.c      # I/O redirection
 │   ├── signals.c       # Signal handling
 │   ├── utils.c         # Utility functions
@@ -94,13 +107,17 @@ shx/
 │       ├── shell.h     # Main header
 │       └── config.h    # Configuration
 ├── tests/              # Test scripts
-├── Makefile           
-└── README.md          
+├── Makefile           # Build system
+└── README.md          # This file
 ```
 
 ## Technical Details
 
 **Process Execution:** Uses `fork()` + `execvp()` pattern
+
+**Pipelines:** Implemented with `pipe()` system call and proper file descriptor management
+
+**Variable Expansion:** Supports `$VAR`, `${VAR}`, and special variables (`$$` for PID)
 
 **I/O Redirection:** Implemented with `dup2()` and file descriptors
 
@@ -110,18 +127,32 @@ shx/
 
 ## Roadmap
 
-- [ ] Pipeline support (`|`)
-- [ ] Command history
+- [x] Pipeline support (`|`) ✅ **v0.2.0**
+- [x] Environment variable expansion (`$VAR`) ✅ **v0.2.0**
+- [ ] Command history (up/down arrows)
 - [ ] Tab completion
-- [ ] Environment variable expansion (`$VAR`)
 - [ ] Job control (`fg`, `bg`, `jobs`)
 - [ ] Wildcard expansion (`*.txt`)
+- [ ] Command substitution (`$(cmd)`)
+
+## What's New
+
+### v0.2.0 (Latest)
+- ✨ Added pipeline support - connect unlimited commands with `|`
+- ✨ Added environment variable expansion - `$VAR` and `${VAR}` syntax
+- 🐛 Fixed memory leaks in command parsing
+- 📝 Improved error handling
+
+### v0.1.0
+- Initial release with basic shell functionality
+- Built-in commands and I/O redirection
+- Background job support
 
 ## Contributing
 
 Contributions welcome! Feel free to:
 - Report bugs
-- Suggest features
+- Suggest features  
 - Submit pull requests
 
 ## License
@@ -130,12 +161,18 @@ MIT License - see LICENSE file
 
 ## Learning Resources
 
-Great for learning:
+This project is great for learning about:
 - Process management in Unix
+- Inter-process communication (pipes)
 - File descriptors and I/O
 - Signal handling
-- System calls (`fork`, `exec`, `wait`, `dup2`)
+- Environment variables
+- System calls (`fork`, `exec`, `wait`, `dup2`, `pipe`)
 
 ## Author
 
 Built as an educational project to understand Unix shell internals.
+
+---
+
+⭐ **Star this repo if you find it useful!**
