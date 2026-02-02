@@ -5,7 +5,6 @@ A lightweight, educational Unix shell written in C that demonstrates fundamental
 <p align="center">
   <img src="https://img.shields.io/badge/VERSION-0.2.0-blue?style=flat-square" />
   <img src="https://img.shields.io/badge/LICENSE-MIT-green?style=flat-square" />
-  <img src="https://img.shields.io/badge/LOC-~1000-orange?style=flat-square" />
 </p>
 
 ## Features
