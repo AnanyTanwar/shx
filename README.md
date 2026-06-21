@@ -11,8 +11,8 @@ A lightweight, educational Unix shell written in C that demonstrates fundamental
 
 - ✅ **Command Execution** - Run any external program
 - ✅ **Built-in Commands** - `cd`, `pwd`, `echo`, `exit`, `export`, `env`
-- ✅ **Pipelines** - Connect commands with `|` 🔥 **NEW in v0.2.0**
-- ✅ **Environment Variables** - `$VAR` and `${VAR}` expansion 🔥 **NEW in v0.2.0**
+- ✅ **Pipelines** - Connect commands with `|` 
+- ✅ **Environment Variables** - `$VAR` and `${VAR}` expansion 
 - ✅ **I/O Redirection** - `>`, `<`, `>>`
 - ✅ **Background Jobs** - Run commands with `&`
 - ✅ **Signal Handling** - Ctrl+C doesn't kill the shell
